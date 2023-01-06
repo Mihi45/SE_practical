@@ -1,24 +1,87 @@
-import random
-import get
-import smtplib
+import unittest
+import otp_1
 
-      # return(otp)
-server =smtplib.SMTP('smtp.gmail.com',587)
-Sender=get.email
-Pass=get.password
-email=input("Enter your email: ")
-server.starttls()
-server.login(Sender,password=Pass)
-otp=''.join([str(random.randint(0,9))for i in range(6)])
 
-msg='Hello, your otp is '+str(otp)
-server.sendmail(Sender,email,msg)
-server.quit()
-# print(otp)
-print("Enter The OTP")
-a=input();
+# from otp import generate_otp
 
-if a==otp:
-  print("Verified")
-else :
-  print("Failed")
+
+class TestgenerateOTP(unittest.TestCase):
+
+    def testcase1(self):
+        size = 4
+
+        #To Check Otp
+        res = otp_1.otp(4)
+        self.assertEqual(len(res), size)
+
+        #To Check email address for sender
+        Email = otp_1.emailsender
+        self.assertIn("@",Email)
+        self.assertIn(".",Email)
+        self.assertIn("com",Email)
+
+        #To Check email address for reciver
+        Email2 = otp_1.emailreciver
+        self.assertIn("@",Email2)
+        self.assertIn(".",Email2)
+        self.assertIn("com",Email2)
+
+
+
+    def testcase2(self):
+        size = 4
+
+        # To Check Otp
+        res = otp_1.otp(4)
+        self.assertEqual(len(res), size)
+
+        # To Check email address
+        Email = otp_1.emailsender
+        self.assertIn("@", Email)
+        self.assertIn(".", Email)
+        self.assertIn("com", Email)
+
+    def testcase3(self):
+        size = 4
+
+        # To Check Otp
+        res = otp_1.otp(4)
+        self.assertEqual(len(res), size)
+
+        # To Check email address
+        Email = otp_1.emailsender
+        self.assertIn("@", Email)
+        self.assertIn(".", Email)
+        self.assertIn("com", Email)
+
+        #To Check email address for reciver
+        Email2 = otp_1.emailreciver
+        self.assertIn("@",Email2)
+        self.assertIn(".",Email2)
+        self.assertIn("com",Email2)
+
+    def testcase4(self):
+        size = 4
+
+        # To Check Otp
+        res = otp_1.otp(4)
+        self.assertEqual(len(res), size)
+
+        # To Check email address
+        Email = otp_1.emailsender
+        self.assertIn("@", Email)
+        self.assertIn(".", Email)
+        self.assertIn("com", Email)
+
+        #To Check email address for reciver
+        Email2 = otp_1.emailreciver
+        self.assertIn("@",Email2)
+        self.assertIn(".",Email2)
+        self.assertIn("com",Email2)
+
+
+
+
+if __name__ == '__main__':
+
+    unittest.main()
